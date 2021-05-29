@@ -1,0 +1,7 @@
+<h1><%= @tag.name %></h1>
+
+<% if @tag.articles.empty? %>
+  <h2>no articles</h2>
+<% else %>
+  <%= render 'shared/article', obj: @tag.articles %>
+<% end %>

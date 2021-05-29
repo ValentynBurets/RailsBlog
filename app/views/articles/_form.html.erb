@@ -1,0 +1,56 @@
+<%= render 'shared/errors', obj: @article %>
+<div class="row">
+ <div class="col-xs-12">
+
+  <%= form_for(@article, :html => { multipart: true, class: "form-horizontal", role: "form"}) do |f| %>
+  <div class="form-group">
+   <div class="control-label col-sm-2">
+    <%= f.label :title %>
+   </div>
+   <div class="col-sm-6">
+    <%= f.text_field :title, class: "form-control", placeholder: "Title of article", autofocus: true %>
+   </div>
+  </div>
+
+<!--div for tags-->
+  <div class="form-group">
+   <div class="control-label col-sm-2">
+    <%= f.label :all_tags %>
+   </div>
+   <div class="col-sm-6">
+    <%= f.text_field :all_tags, class: "form-control" %>
+   </div>
+  </div>
+
+<!--div for images-->
+  <div class="form-group" >
+    <div class="control-label col-sm-2">
+
+    </div>
+    <div class="control-label col-sm-2">
+      <%= f.file_field :image%>
+    </div>
+  </div>
+
+<!--div for descripion-->
+  <div class="form-group">
+   <div class="control-label col-sm-2">
+    <%= f.label :description %>
+   </div>
+   <div class="col-sm-6">
+    <%= f.text_area :description, rows: 10, class: "form-control", placeholder: "Body of article" %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div class="col-sm-offset-2 col-sm-10">
+    <%= f.submit class: 'btn btn-primary btn-large' %>
+   </div>
+  </div>
+<% end %>
+
+  <section class="footer-summary">
+    <%= raw @article.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag tag-primary' }.join(' ')%>
+  </section>
+
+ </div>
+</div>
